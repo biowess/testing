@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OCTForge — Synthetic OCT figure authoring</title>
+<meta name="description" content="OCTForge is a local-first tool for generating synthetic retinal OCT B-scans and exporting annotated teaching figures. Distributed as source. Not for diagnostic use.">
+<meta name="theme-color" content="#FFFFFF">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OCTForge — Synthetic OCT figure authoring">
+<meta property="og:description" content="Generate synthetic retinal OCT B-scans, then annotate, measure, compose and export teaching figures.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@400..600&display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="sentinel" aria-hidden="true"></div>
+<header class="site-header">
+ <div class="site-header__inner page">
+  <a class="brand" href="#top"><img src="assets/logo.png" alt="OCTForge" width="560" height="136"></a>
+  <nav class="nav" aria-label="Primary">
+   <ul class="nav__list" id="nav-list">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how-it-works">How it works</a></li>
+    <li><a href="#documentation">Documentation</a></li>
+    <li><a href="#privacy">Privacy &amp; use</a></li>
+    <li><a href="#about">About</a></li>
+    <li class="nav__install-item"><a href="#installation">Install</a></li>
+   </ul>
+  </nav>
+  <a class="btn btn--primary btn--sm site-header__install" href="#installation">Install</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav-list">Menu</button>
+ </div>
+</header>
+
+<main id="main">
+<section class="hero" id="top">
+<div class="page hero__head" style="display: flex; flex-direction: column; align-items: stretch; gap: 1.5rem; text-align: left;">
+  <div style="width: 100%; text-align: left;">
+    <p class="overline" data-anim style="--i:0">OCTForge · Synthetic OCT figure authoring</p>
+    <h1 data-anim style="--i:1; margin-bottom: 5px;">Draw the retina you mean to <em>teach.</em></h1>
+  </div>
+
+  <div class="hero__side" style="width: 100%; text-align: left;">
+<p class="lede" data-anim style="--i:2; margin-bottom: 10px; text-align: justify;">
+  OCTForge generates synthetic OCT B-scans from a parametric retinal model, then helps you annotate, measure, compose and export them as figures for lectures, course materials and scientific-style illustration. It runs on your own computer.
+</p>
+    <p class="btns" data-anim style="--i:3; margin-top: 30px; margin-bottom: 16px;"><a class="btn btn--primary" href="#installation">Install OCTForge</a> <a class="btn btn--secondary" href="#documentation">Read the documentation</a> <a class="textlink" href="https://github.com/YOUR-ORG/octforge">View the source</a></p>
+
+    <ul class="facts" data-anim style="--i:4; margin-top: 20px; margin-bottom: 12px;">
+      <li>Version 1.0.0</li>
+      <li>Runs locally on 127.0.0.1</li>
+      <li>Distributed as source</li>
+    </ul>
+
+    <p class="notice" data-anim style="--i:5; margin-top: 20px;">Every image is synthetic. OCTForge is not for diagnostic use.</p>
+  </div>
+</div>
+ <div class="hero__band">
+  <figure class="plate hero__plate">
+   <picture>
+    <source media="(max-width: 700px)" srcset="assets/plate-annotate-viewer-900.webp" width="900" height="900">
+    <img
+  src="assets/annotate.png"
+  width="3200"
+  height="2000"
+  fetchpriority="high"
+  loading="eager"
+  decoding="async"
+  alt="Screenshot of OCTForge’s Annotate workspace: a toolbar of annotation tools above a dark viewport showing a colored synthetic retinal OCT cross-section with labeled layers and a fluid-filled lesion, and a list of annotation items on the left."
+>
+   </picture>
+   <figcaption><b>Plate 1</b> The Annotate workspace with a subretinal-fluid scene; layers auto-labeled. All imagery is synthetic.</figcaption>
+  </figure>
+ </div>
+</section>
+
+<svg class="dip" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 8 H470 C520 8 540 32 600 32 C660 32 680 8 730 8 H1200"/></svg>
+
+<section class="section" id="overview" aria-labelledby="overview-title">
+ <div class="page grid-12">
+  <div class="span-7" data-reveal>
+   <p class="overline">Why it exists</p>
+   <h2 class="statement" id="overview-title">Real scans make awkward teaching cases. They carry patient identifiers, consent constraints and uneven quality.</h2>
+   <p>OCTForge lets an educator describe a retina, add a pathology, choose an acquisition setup and produce a clean cross-section that fits the question being taught. Scenes can then be annotated, measured, composed into multi-panel figures, saved as projects and exported for slides, print and the web.</p>
+  </div>
+  <dl class="span-5 defs" data-reveal style="--i:1">
+   <div><dt>Synthetic</dt><dd>Images are generated from parameters. No real scans are imported or displayed.</dd></div>
+   <div><dt>Local</dt><dd>The renderer and your scene data stay on your machine.</dd></div>
+   <div><dt>Reproducible</dt><dd>A fixed seed reproduces the same image.</dd></div>
+  </dl>
+ </div>
+</section>
+
+<section class="section" id="features" aria-labelledby="features-title">
+ <div class="page">
+  <h2 id="features-title" data-reveal>What you can <em>do</em> with it.</h2>
+
+  <div class="grid-12 feature" data-reveal>
+<figure class="plate span-7">
+  <img src="assets/generate.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Screenshot of OCTForge’s Generator workspace with the Presets tab open and a subretinal-fluid scene loaded.">
+  <figcaption><b>Plate 2</b> The Generator workspace and its pathology library.</figcaption>
+</figure>
+   <div class="span-5">
+    <h3>Describe the retina, parameter by parameter.</h3>
+    <p>Set foveal pit depth and width and overall thickness; add pathology instances and tune severity, size, extent, location and reflectivity; choose scan width, depth and signal strength; adjust speckle, contrast and gamma; add artifacts. Start from one of twelve presets, then change anything. Seed and Randomize explore variations within physiological bounds.</p>
+   </div>
+  </div>
+  <div class="grid-12 catalogue" data-reveal>
+   <div class="span-6"><h4>Twelve presets</h4><ul class="cols">
+    <li>Normal Macula</li><li>CME</li><li>SRF</li><li>Drusen</li><li>PED</li><li>ERM</li><li>Full-Thickness Macular Hole</li><li>Lamellar Macular Hole</li><li>Geographic Atrophy</li><li>VMT</li><li>Outer Retinal Disruption</li><li>Hyperreflective Foci</li></ul></div>
+   <div class="span-6"><h4>Seven artifacts</h4><p>Motion, dropout, shadowing, saturation, mirror, poor signal, banding.</p><p class="small">Presets are parametric starting points for illustration. Each can be adjusted.</p></div>
+  </div>
+
+  <div class="grid-12 feature feature--rev" data-reveal>
+   <div class="span-5">
+    <h3>Label and measure from the segmentation, not by eye.</h3>
+    <p>Auto-label places a dot, leader line and label on each of ten layers using the renderer’s own layer map. Calipers report distance in micrometers or millimeters, calibrated from the scan’s width and depth. The Measurements section lists central foveal thickness, mean total retinal thickness, foveal pit depth and width, and the thickness of each layer. Add text boxes, arrows, numbered badges, brackets and reference lines. Annotations are stored as vector data and never alter the rendered image.</p>
+    <p class="small">Labeled layers: RNFL, GCL, IPL, INL, OPL, ONL, EZ, RPE, choroid, sclera.</p>
+   </div>
+<figure class="plate span-7">
+  <img src="assets/measure.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Screenshot of OCTForge’s Annotate workspace with the Measurements section open and a caliper drawn across a lesion.">
+  <figcaption><b>Plate 3</b> Annotate workspace with the Measurements section and a caliper.</figcaption>
+</figure>
+  </div>
+
+  <div class="feature" data-reveal>
+   <h3>Compose figures ready for a slide, a handout or a manuscript.</h3>
+<figure class="plate plate--wide">
+  <img src="assets/composed.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Screenshot of OCTForge’s composed figure view: a titled multi-panel figure of synthetic OCT scans with panel badges, captions and scale bars.">
+  <figcaption><b>Plate 4</b> A composed figure with title, badges, captions and scale bars.</figcaption>
+</figure>
+   <div class="grid-12 trio">
+    <div class="span-4"><h4>Arrange</h4><p>Single, side-by-side, strips, stacks, 2 × 2 or an automatic grid, with a figure title, panel captions, A–D badges and a layer legend.</p></div>
+    <div class="span-4"><h4>Calibrate</h4><p>Scale bars of 1 mm and 200 µm, drawn from the scan’s own dimensions.</p></div>
+    <div class="span-4"><h4>Export</h4><p>PNG, JPEG, TIFF, PDF or SVG with a vector overlay, at 72 to 1200 DPI, from seven presets.</p></div>
+   </div>
+   <div class="table-wrap" tabindex="0" role="region" aria-label="Export presets">
+    <table><caption class="sr-only">Export presets</caption>
+     <thead><tr><th scope="col">Preset</th><th scope="col">Specification</th></tr></thead>
+     <tbody>
+      <tr><th scope="row">Publication</th><td>600 DPI TIFF (LZW)</td></tr>
+      <tr><th scope="row">Lecture Slide</th><td>1080p PNG with notice</td></tr>
+      <tr><th scope="row">PowerPoint</th><td>1080p clean PNG</td></tr>
+      <tr><th scope="row">A4 Print</th><td>300 DPI PDF</td></tr>
+      <tr><th scope="row">Web Optimized</th><td>72 DPI JPEG</td></tr>
+      <tr><th scope="row">High-Res Master</th><td>600 DPI PNG</td></tr>
+      <tr><th scope="row">Low Bandwidth</th><td>72 DPI grayscale</td></tr>
+     </tbody></table>
+   </div>
+   <p class="small">Exports embed a synthetic-image notice in file metadata; label synthetic images as synthetic when you use them.</p>
+  </div>
+
+  <ul class="grid-12 secondary ruled" data-reveal>
+   <li class="span-4"><b>Display modes</b> Grayscale, colored layers, hybrid and educational views, with clinical, color-blind-safe and custom palettes. Changing them does not re-render the scan.</li>
+   <li class="span-4"><b>Projects</b> Save, load, duplicate, rename, reset and delete scenes as JSON files; undo and redo up to 64 scene changes.</li>
+   <li class="span-4"><b>Keyboard-driven</b> Single-key tool shortcuts in the Annotate workspace, zoom and pan, and tab navigation by keyboard.</li>
+  </ul>
+ </div>
+</section>
+
+<section class="section section--sunk" id="how-it-works" aria-labelledby="how-title">
+ <div class="page">
+  <h2 id="how-title" data-reveal>From parameters to a <em>finished figure.</em></h2>
+  <ol class="process" data-reveal>
+   <li><span class="num">01</span><h3>Describe</h3><p>Set anatomy, pathology, acquisition, realism and artifacts, or start from a preset.</p></li>
+   <li><span class="num">02</span><h3>Render</h3><p>A forward model turns the scene into a grayscale B-scan and a matching layer map.</p></li>
+   <li><span class="num">03</span><h3>Visualize and annotate</h3><p>Choose colors, add labels, take measurements. The scan is not re-rendered.</p></li>
+   <li><span class="num">04</span><h3>Compose</h3><p>Arrange scenes as panels with titles, badges, a legend and scale bars.</p></li>
+   <li><span class="num">05</span><h3>Export</h3><p>Write PNG, JPEG, TIFF, PDF or SVG for slides, print or the web.</p></li>
+  </ol>
+  <div class="grid-12 renderer" data-reveal>
+   <ol class="span-6 lead-list">
+    <li><b>Parametric anatomy</b> foveal shape, boundary irregularity, per-layer thickness and reflectivity.</li>
+    <li><b>Pathology deformation</b> lesions such as cysts, fluid or drusen deform and re-reflect the anatomy.</li>
+    <li><b>Optical forward model</b> Beer–Lambert attenuation and coherent, PSF-correlated speckle.</li>
+    <li><b>Acquisition and artifacts</b> scan geometry, resolution, averaging and optional artifacts.</li>
+    <li><b>Display mapping</b> dynamic range, gamma and window level.</li>
+   </ol>
+   <p class="span-6 callout">A procedural, physically motivated approximation. It is not a clinical-grade physical simulation. Read its output as illustration, not as a measurement of a real eye.</p>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="installation" aria-labelledby="install-title">
+ <div class="page grid-12">
+  <div class="span-4 install__side">
+   <h2 id="install-title">Install from <em>source.</em></h2>
+   <p class="lede">OCTForge is distributed as source code. There is no installer or prebuilt binary.</p>
+   <p class="small">Needs Python 3.12 or newer, Git and a current desktop browser. Run everything from the repository root.</p>
+   <h4>What happens when you run it</h4>
+   <p class="small">The launcher starts one Uvicorn server on 127.0.0.1:8000 and polls <code>/api/health</code>. When it answers, your default browser opens <code>http://127.0.0.1:8000/</code>, showing the Start page with an “Open workspace” button. If the health check never succeeds, open the address yourself. Stop the server with <kbd>Ctrl</kbd>+<kbd>C</kbd>.</p>
+  </div>
+  <ol class="span-8 steps">
+   <li><p>Clone the repository.</p>
+    <div class="codeblock"><div class="codeblock__bar"><span>bash</span></div><pre tabindex="0" aria-label="Clone commands"><code>git clone https://github.com/YOUR-ORG/octforge.git
+cd octforge</code></pre></div></li>
+   <li><p>Create and activate a virtual environment.</p>
+    <div class="variants">
+     <div class="codeblock"><div class="codeblock__bar"><span>macOS / Linux</span></div><pre tabindex="0" aria-label="macOS and Linux commands"><code>python3 -m venv .venv
+source .venv/bin/activate</code></pre></div>
+     <div class="codeblock"><div class="codeblock__bar"><span>Windows</span></div><pre tabindex="0" aria-label="Windows commands"><code>python -m venv .venv
+.venv\Scripts\activate</code></pre></div>
+    </div></li>
+   <li><p>Install the dependencies.</p>
+    <div class="codeblock"><div class="codeblock__bar"><span>bash</span></div><pre tabindex="0" aria-label="Install command"><code>pip install -r backend/requirements.txt</code></pre></div></li>
+   <li><p>Start OCTForge from the repository root.</p>
+    <div class="codeblock"><div class="codeblock__bar"><span>bash</span></div><pre tabindex="0" aria-label="Run command"><code>python run.py</code></pre></div></li>
+   <li><p>Optional: choose another port.</p>
+    <div class="codeblock"><div class="codeblock__bar"><span>bash</span></div><pre tabindex="0" aria-label="Port command"><code>python run.py 8001</code></pre></div></li>
+  </ol>
+ </div>
+</section>
+
+<section class="section section--sunk" id="documentation" aria-labelledby="docs-title">
+ <div class="page">
+  <h2 id="docs-title">Using <em>OCTForge.</em></h2>
+  <div class="docs">
+   <details class="toc" open>
+    <summary>On this page</summary>
+    <nav aria-label="On this page"><ul>
+     <li><a href="#doc-getting-started">Getting started</a></li>
+     <li><a href="#doc-workspaces">The workspaces</a></li>
+     <li><a href="#doc-annotate">Annotate and measure</a></li>
+     <li><a href="#doc-export">Export and composition</a></li>
+     <li><a href="#doc-projects">Projects</a></li>
+     <li><a href="#doc-shortcuts">Keyboard shortcuts</a></li>
+     <li><a href="#doc-troubleshooting">Troubleshooting</a></li>
+     <li><a href="#doc-limits">Limitations</a></li>
+    </ul></nav>
+   </details>
+   <div class="docs__body">
+    <article class="doc" id="doc-getting-started"><h3>Getting started</h3>
+     <p>From the Start page choose Open workspace. Documentation, About and Privacy are reachable from the Start page or the workspace Help menu and open in a new tab, so the current scene is not lost.</p></article>
+    <article class="doc" id="doc-workspaces"><h3>The workspaces</h3>
+     <p>The window has a top application bar (scene name, undo, redo, Save, Help), workspace tabs, a toolbar that changes with the tab, a left panel with section tabs, the viewport with zoom controls, and a status bar showing latency, cache hit or miss, render ID, active tool, annotation count, image size, undo depth and backend status.</p>
+     <p><b>Generator.</b> Scene holds Anatomy, Pathology, Acquisition, Realism and Artifacts, with a Basic / Advanced switch; the preview re-renders automatically as values change. Presets holds the 12-preset library (Load scene replaces the scene; Add to figure sends it to the composition) and a randomizer. <b>Render final</b> produces the full-quality image with its layer map; <b>Seed</b> fixes random elements; <b>Randomize</b> draws a new scene within physiological bounds.</p>
+     <p><b>Visualize.</b> Choose a mode (grayscale, colored layers, hybrid, educational), a palette (clinical, color-blind-safe, educational, custom), global opacity, and per-layer color, opacity and visibility. These settings do not change the underlying image or require a re-render.</p></article>
+    <article class="doc" id="doc-annotate"><h3>Annotate and measure</h3>
+     <div class="table-wrap" tabindex="0" role="region" aria-label="Annotation tools">
+      <table><caption class="sr-only">Annotation tools</caption>
+       <thead><tr><th scope="col">Tool</th><th scope="col">Key</th><th scope="col">Use</th></tr></thead>
+       <tbody>
+        <tr><th scope="row">Select</th><td><kbd>V</kbd></td><td>Select, move, resize, edit; dragging empty space pans</td></tr>
+        <tr><th scope="row">Text</th><td><kbd>T</kbd></td><td>Drag to draw a text box, then type</td></tr>
+        <tr><th scope="row">Arrow</th><td><kbd>A</kbd></td><td>Drag from tail to point</td></tr>
+        <tr><th scope="row">Leader</th><td><kbd>L</kbd></td><td>Line with a dot at its start</td></tr>
+        <tr><th scope="row">Dot</th><td><kbd>D</kbd></td><td>Click to place a landmark</td></tr>
+        <tr><th scope="row">Badge</th><td><kbd>N</kbd></td><td>Numbered marker, counting up automatically</td></tr>
+        <tr><th scope="row">Bracket</th><td><kbd>B</kbd></td><td>Drag vertically to bracket a layer or lesion</td></tr>
+        <tr><th scope="row">Ref line</th><td><kbd>R</kbd></td><td>Drag a straight reference line</td></tr>
+        <tr><th scope="row">Caliper</th><td><kbd>M</kbd></td><td>Drag between two points to measure</td></tr>
+       </tbody></table>
+     </div>
+     <p>The Annotations list has a property inspector (text, font size, rotation, color). Auto-label adds labels to ten layers. The caliper reports micrometers or millimeters, calibrated from the scan width and depth of the current scene. The Measurements section lists central foveal thickness, mean total retinal thickness, foveal pit depth and width, and per-layer thickness, and can draw scale bars (1 mm lateral, 200 µm axial). These are measurements of a synthetic model, not of a patient.</p></article>
+    <article class="doc" id="doc-export"><h3>Export and composition</h3>
+     <p>Export offers the seven presets and detailed settings: scope (single B-scan or composed figure), format (PNG, JPEG, TIFF, PDF, SVG), resolution in DPI, color mode (RGB, grayscale, RGBA), and toggles for annotations and layer labels, caliper measurements, scale bars and an educational-notice watermark. <b>Export figure</b> downloads through the browser. Composition arranges scenes as panels with figure title, panel captions, badges, spacing, a layer legend and scale bars; the Single scan / Composed figure switch in the toolbar changes what the viewer shows.</p></article>
+    <article class="doc" id="doc-projects"><h3>Projects</h3>
+     <p>Save from the application bar; the Projects tab lists projects, which can be loaded, renamed, duplicated, reset or deleted. Files live in <code>projects/</code> beside where you launched the app. Creating or opening a project with unsaved changes asks whether to save, discard or cancel.</p></article>
+    <article class="doc" id="doc-shortcuts"><h3>Keyboard shortcuts</h3>
+     <p>On a Mac use Cmd for Ctrl.</p>
+     <div class="table-wrap" tabindex="0" role="region" aria-label="Keyboard shortcuts">
+      <table><caption class="sr-only">Keyboard shortcuts</caption>
+       <thead><tr><th scope="col">Shortcut</th><th scope="col">Action</th></tr></thead>
+       <tbody>
+        <tr><td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td><td>Undo the last scene change (annotation edits are not part of scene undo)</td></tr>
+        <tr><td><kbd>Ctrl</kbd> + <kbd>Y</kbd>, or <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd></td><td>Redo</td></tr>
+        <tr><td><kbd>V</kbd> <kbd>T</kbd> <kbd>A</kbd> <kbd>L</kbd> <kbd>D</kbd> <kbd>N</kbd> <kbd>B</kbd> <kbd>R</kbd> <kbd>M</kbd></td><td>Choose a tool (Annotate workspace only; ignored while typing)</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>Finish text editing; otherwise return to Select and clear selection</td></tr>
+        <tr><td><kbd>Delete</kbd> or <kbd>Backspace</kbd></td><td>Delete the selected annotation</td></tr>
+        <tr><td><kbd>Ctrl</kbd> + <kbd>Enter</kbd></td><td>Finish text editing</td></tr>
+        <tr><td><kbd>←</kbd> <kbd>→</kbd> <kbd>Home</kbd> <kbd>End</kbd></td><td>Move between workspace tabs when a tab has focus</td></tr>
+        <tr><td><kbd>+</kbd> and <kbd>−</kbd></td><td>Zoom, when the image view has focus</td></tr>
+        <tr><td><kbd>F</kbd>, <kbd>1</kbd></td><td>Fit to view; show at 100% (image view focused)</td></tr>
+        <tr><td>Mouse wheel; drag</td><td>Zoom around the pointer; pan with the Select tool</td></tr>
+       </tbody></table>
+     </div></article>
+    <article class="doc" id="doc-troubleshooting"><h3>Troubleshooting</h3>
+     <div class="table-wrap" tabindex="0" role="region" aria-label="Troubleshooting">
+      <table><caption class="sr-only">Troubleshooting</caption>
+       <thead><tr><th scope="col">Symptom</th><th scope="col">Cause</th><th scope="col">Fix</th></tr></thead>
+       <tbody>
+        <tr><td>Import errors mentioning <code>backend</code></td><td>Launched from the wrong directory</td><td><code>cd</code> to the repository root, run <code>python run.py</code></td></tr>
+        <tr><td>Port already in use</td><td>Another program is using 8000</td><td><code>python run.py 8001</code></td></tr>
+        <tr><td>Browser did not open</td><td>No default browser, or health check timed out</td><td>Open <code>http://127.0.0.1:8000/</code> yourself</td></tr>
+        <tr><td>Interface uses a generic font</td><td>Offline; Outfit falls back to the system font</td><td>Cosmetic only</td></tr>
+        <tr><td>Saved projects not listed</td><td>Launched from a different folder than before</td><td>Launch from the folder that holds <code>projects/</code></td></tr>
+        <tr><td>Work disappeared on reload</td><td>Scenes live in browser memory until saved</td><td>Use Save</td></tr>
+        <tr><td>Tests fail to collect</td><td><code>httpx</code> not installed</td><td><code>pip install httpx</code></td></tr>
+       </tbody></table>
+     </div></article>
+    <article class="doc" id="doc-limits"><h3>Limitations</h3>
+     <ul>
+      <li>All output is synthetic; the renderer is an approximation, not a clinical-grade simulation.</li>
+      <li>Not for diagnosis or any patient decision.</li>
+      <li>Real scans cannot be imported.</li>
+      <li>Five export formats only (no DICOM).</li>
+      <li>Presets are starting points to be adjusted.</li>
+      <li>One local user, no accounts or sharing.</li>
+      <li>The interface is designed for a desktop-sized browser window.</li>
+     </ul></article>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="privacy" aria-labelledby="privacy-title">
+ <div class="page">
+  <h2 id="privacy-title" data-reveal>Your data stays with you. The images are <em>not clinical.</em></h2>
+  <div class="grid-12">
+   <div class="span-6" data-reveal><h3>Data handling</h3>
+    <ul class="ruled">
+     <li>No account or sign-in, and no personal information is requested.</li>
+     <li>Scenes, projects and exports are processed by the OCTForge server on your own machine. Saved projects are JSON files in the <code>projects/</code> folder of the directory you launch from; exports are downloaded by your browser.</li>
+     <li>The server listens on 127.0.0.1 only, so other computers cannot reach it by default.</li>
+     <li>The interface talks only to that local server. We found no code in the application that sends data anywhere else.</li>
+     <li>One external request: your browser asks Google Fonts for the Outfit typeface. Google may receive ordinary connection metadata; scene data, images and projects are not part of that request. Offline, the interface falls back to the system font.</li>
+     <li>This website makes the same Google Fonts request for Outfit and Instrument Serif, and uses no analytics, cookies or third-party scripts.</li>
+     <li>The application includes no analytics, advertising identifiers, trackers or third-party scripts, and does not use cookies, localStorage, sessionStorage or IndexedDB. The current scene and undo history live in browser memory and are lost when you close or reload the page, so save a project to keep your work.</li>
+     <li>OCTForge has no feature for importing real scans, so no patient imagery is processed. It writes no log files; the server prints standard Uvicorn lines to the terminal.</li>
+    </ul></div>
+   <div class="span-6" data-reveal style="--i:1"><h3>Scientific use</h3>
+    <p class="callout">Every image is synthetic. It is generated from parameters, is not derived from any real patient, and has not been validated for clinical decision-making. OCTForge is not a diagnostic device.</p>
+    <ul class="ruled">
+     <li>Intended for medical education, teaching cases, lecture slides, course materials and scientific-style figures. Not designed for diagnosis, triage, treatment planning or any decision about a real patient.</li>
+     <li>Do not present output as a real clinical scan. If you use it in teaching, label synthetic images as synthetic.</li>
+     <li>Exports carry a synthetic-image notice in file metadata, and can add an on-image notice.</li>
+    </ul></div>
+  </div>
+ </div>
+</section>
+
+<section class="section section--sunk" id="about" aria-labelledby="about-title">
+ <div class="page grid-12">
+  <div class="span-5" data-reveal><h2 class="statement" id="about-title">Built so teachers can show what retinal disease looks like on OCT without depending on archives of real scans.</h2></div>
+  <div class="span-7" data-reveal style="--i:1">
+   <dl class="table-dl">
+    <div><dt>Backend</dt><dd>Python, FastAPI and Uvicorn; Pydantic v2 data models; NumPy and SciPy for numerical work; Pillow for image encoding.</dd></div>
+    <div><dt>Frontend</dt><dd>Plain HTML, CSS and JavaScript, no framework or build step, served by the same process.</dd></div>
+    <div><dt>Deployment</dt><dd>Local-first on 127.0.0.1; no account or internet connection needed to render.</dd></div>
+    <div><dt>Projects</dt><dd>JSON files in a <code>projects/</code> folder.</dd></div>
+    <div><dt>Version</dt><dd>1.0.0</dd></div>
+    <div><dt>Source</dt><dd><a href="https://github.com/YOUR-ORG/octforge">github.com/YOUR-ORG/octforge</a></dd></div>
+    <div><dt>Author</dt><dd>Biowess</dd></div>
+    <div><dt>Contact</dt><dd><a href="mailto:biowess@proton.me">biowess@proton.me</a></dd></div>
+   </dl>
+   <p class="small">Interface icons from Lucide (ISC license). Typefaces Outfit and Instrument Serif, SIL Open Font License, served by Google Fonts.</p>
+  </div>
+ </div>
+</section>
+</main>
+
+<svg class="dip" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 8 H470 C520 8 540 32 600 32 C660 32 680 8 730 8 H1200"/></svg>
+<footer class="site-footer">
+ <div class="page footer__inner">
+  <img src="assets/logo.png" alt="OCTForge" width="560" height="136">
+  <p class="small">Synthetic imagery only. Not for diagnostic use.</p>
+  <ul class="footer__links">
+   <li><a href="#features">Features</a></li><li><a href="#how-it-works">How it works</a></li><li><a href="#installation">Installation</a></li><li><a href="#documentation">Documentation</a></li><li><a href="#privacy">Privacy &amp; use</a></li><li><a href="#about">About</a></li><li><a href="mailto:biowess@proton.me">biowess@proton.me</a></li>
+  </ul>
+ </div>
+</footer>
+<div class="sr-only" role="status" id="copy-status"></div>
+</body>
+</html>
